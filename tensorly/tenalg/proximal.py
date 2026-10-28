@@ -491,7 +491,8 @@ def l2_square_prox(tensor, regularizer):
             In Fixed-point algorithms for inverse problems in science and engineering (pp. 185-212).
             Springer, New York, NY.
     """
-    return tensor / (1 + 2 * regularizer)
+    denominator = 1 + 2 * regularizer
+    return tensor / denominator
 
 
 def l2_prox(tensor, regularizer):
