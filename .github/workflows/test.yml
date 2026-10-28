@@ -82,6 +82,7 @@ jobs:
         key: testmon-${{matrix.BACKEND}}-${{matrix.python-version}}-${{steps.testmon.outputs.env}}-${{hashFiles('.github/workflows/test.yml')}}-${{github.sha}}
         restore-keys: |
           testmon-${{matrix.BACKEND}}-${{matrix.python-version}}-${{steps.testmon.outputs.env}}-${{hashFiles('.github/workflows/test.yml')}}-
+          testmon-${{matrix.BACKEND}}-${{matrix.python-version}}-
 
     - name: Test with backend ${{matrix.BACKEND}} pytest and coverage
       # Full run with coverage: every backend on main and tags, and numpy, pytorch
