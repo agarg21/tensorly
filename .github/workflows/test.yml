@@ -1,6 +1,7 @@
 name: Test TensorLy
 
-on: [push, pull_request]
+# FORK-ONLY measurement harness (agarg21): dispatch-only, codecov removed.
+on: [workflow_dispatch]
 
 jobs:
   build:
@@ -99,10 +100,3 @@ jobs:
       if: ${{ matrix.TESTMON && github.ref != 'refs/heads/main' && !startsWith(github.ref, 'refs/tags/') }}
       run: |
         TENSORLY_BACKEND=${{matrix.BACKEND}} TENSORLY_TENALG_BACKEND=${{matrix.TENSORLY_TENALG_BACKEND || 'core'}} pytest -vv --testmon --durations=10 tensorly
-
-    - name: Check coverage with CodeCov
-      if: ${{ hashFiles('coverage.xml') != '' }}
-      uses: codecov/codecov-action@v7
-      with:
-        files: ./coverage.xml
-        verbose: true
